@@ -15,9 +15,9 @@ cask "sioyek" do
   command_wrapper "sioyek",
                   executable: "#{appdir}/sioyek.app/Contents/MacOS/sioyek"
 
-  postflight do
-    system_command "/usr/bin/xattr",
-      args: ["-dr", "com.apple.quarantine", "#{appdir}/sioyek.app"]
+  postflight_steps do
+    run "xattr",
+        args: ["-dr", "com.apple.quarantine", "{{appdir}}/sioyek.app"]
   end
 
   zap trash: [
